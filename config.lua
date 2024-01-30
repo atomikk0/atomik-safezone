@@ -1,7 +1,7 @@
 Config = {}
 
 Config.Bolgeler = {
-    [1] = {label = "motel" ,coord = vector3(312.06, -191.24, 61.58), radius = 75.0}, -- Motel
+    [1] = {coord = vector3(312.06, -191.24, 61.58), radius = 75.0}, -- Motel
 }
 
 Config.AntiVDM = true -- Vdm engeli
