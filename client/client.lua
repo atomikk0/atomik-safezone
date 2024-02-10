@@ -74,14 +74,14 @@ CreateThread(function()
             end
 
             if Config.DisableFreeAim then
-                DisableControlAction(0, 63, true)
+                DisableControlAction(0, 25, true)
             end
 
             if Config.DisableShooting then
                 DisablePlayerFiring(PlayerId(), true)
             end
         end
-        Wait(100)
+        Wait(0)
     end
 end)
 
