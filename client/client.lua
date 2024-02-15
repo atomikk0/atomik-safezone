@@ -1,20 +1,21 @@
 local QBCore = exports['qb-core']:GetCoreObject()
-local ui = false
-local isInSafeZone = false
+local isInSafeZone = {} 
+local uiState = false 
 
 CreateThread(function()
     while true do
         local player = PlayerId()
         local ped = PlayerPedId()
         local coords = GetEntityCoords(ped)
+        local newUiState = false 
 
-        for _, v in pairs(Config.Bolgeler) do
+        for index, v in pairs(Config.Bolgeler) do
             local distance = #(coords - v.coord)
-            isInSafeZone = distance < v.radius
+            v.isInSafeZone = distance < v.radius
+            isInSafeZone[index] = v.isInSafeZone
 
-            if isInSafeZone then
-                Wait(100)
-                setUiShow(true)
+            if v.isInSafeZone then
+                newUiState = true 
                 
                 if Config.DisableDriveBy then
                     SetPlayerCanDoDriveBy(player, false)
@@ -44,29 +45,29 @@ CreateThread(function()
                 if Config.DisableDrawWeapon and not IsWhitelistedJob(myJob) then
                     SetCurrentPedWeapon(ped, GetHashKey("WEAPON_UNARMED"), true) 
                 end
-            else
-                Wait(500)
-
-                if Config.DisableDriveBy then
-                    SetPlayerCanDoDriveBy(player, true)
-                end
-            
-                if Config.LimitSpeed then
-                    local vehicle = GetVehiclePedIsIn(ped, false)
-                    if IsEntityAVehicle(vehicle) then
-                        SetEntityMaxSpeed(vehicle, 1000.0)
-                    end
-                end
-            
-                setUiShow(false)
             end
         end
+
+        if newUiState ~= uiState then
+            setUiShow(newUiState)
+            uiState = newUiState
+        end
+
+        Wait(500)
     end
 end)
 
 CreateThread(function()
     while true do
-        if isInSafeZone then
+        local isInAnySafeZone = false
+        for _, v in pairs(isInSafeZone) do
+            if v then
+                isInAnySafeZone = true
+                break
+            end
+        end
+
+        if isInAnySafeZone then
             if Config.DisablePunching then
                 DisableControlAction(0, 140, true)
                 DisableControlAction(0, 141, true)
@@ -85,8 +86,6 @@ CreateThread(function()
     end
 end)
 
-
-
 for _, v in pairs(Config.Bolgeler) do
     local blip = AddBlipForRadius(v.coord.x, v.coord.y, v.coord.z, v.radius)
     SetBlipHighDetail(blip, true)
@@ -95,7 +94,6 @@ for _, v in pairs(Config.Bolgeler) do
 end
 
 function setUiShow(bool)
-    ui = bool
     SendNUIMessage({
         type = "show",
         show = bool
