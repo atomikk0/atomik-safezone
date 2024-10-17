@@ -67,7 +67,8 @@ CreateThread(function()
             end
         end
 
-        if isInAnySafeZone then
+        local myJob = QBCore.Functions.GetPlayerData().job.name
+        if isInAnySafeZone and not IsWhitelistedJob(myJob) then
             if Config.DisablePunching then
                 DisableControlAction(0, 140, true)
                 DisableControlAction(0, 141, true)
