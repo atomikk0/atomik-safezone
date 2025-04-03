@@ -1,26 +1,21 @@
-# atomik-safezone
+## Hello,
+## As Xen Store, we wanted to release a free full-fix Safezone script for the community. Every setting inside works flawlessly. Wishing everyone a great time on the forums!
 
-Discord : atomikk0
+# Features
 
-Discord Server : https://discord.gg/GSeQ747HsC
+- Punch Blocking (Detailed explanations on GitBook regarding all possible bugs)
+- Weapon Draw Restriction (Prevents weapon drawing for non-whitelisted jobs)
+- VDM Protection
+- Fire Protection (Prevents deaths by blocking fires caused by explosions)
+- Speed Limit (Works seamlessly with all handling configurations)
+- Anti Drive-By
+- Right-Click Focus Blocking
+- Weapon Firing Restriction
+- Easy Configuration
+- Two Different Menu Styles
 
-Gelişmiş Safezone Scripti
+# Links
 
-- VDM koruması
-- Yumruk engelleme
-- Ateş etme engelleme
-- Sağ tık odaklanma engelleme
-- Driveby engelleme
-- Silah çekme engelleme
-- Silah çekebilen meslekleri ayarlama
-- Güvenli bölge içinde hız limiti
-- Kolay Config
-
-  Resmon değerleri
-
-  Boşta : 0-0.1ms
-  Çalışırken : 0.4-0.7ms
-
-  Görsel
-
-  ![image]( https://cdn.discordapp.com/attachments/1119221551657648168/1201871793112240178/image.png?ex=65cb6555&is=65b8f055&hm=f351183c06149ce32820863340cbe26a065c9daef3d56182dd93e234ed125c15& )
+## [PREVIEW VIDEO](https://www.youtube.com/watch?v=W43giTZXL7A&feature=youtu.be)
+## [GITBOOK](https://xen-store.gitbook.io/xen-store-docs/xen-safezone)
+## [TEBEX LINK](https://xen.tebex.io/package/6766200)
